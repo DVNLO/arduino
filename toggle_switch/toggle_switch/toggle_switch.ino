@@ -40,10 +40,8 @@ void loop() {
 		else
 			pushbutton.set(true);	//set on
 		flash(RED_LED);
+		hang_exe(TOGGLE_PIN);
 	}
-
-	delay(100);
-
 	if (pushbutton.get())
 		digitalWrite(YELLOW_LED, HIGH);
 	else
@@ -54,4 +52,10 @@ void flash(unsigned short int& pin) {
 	digitalWrite(pin, HIGH);
 	delay(50);
 	digitalWrite(pin, LOW);
+}
+
+/*Delays execution until pin is not HIGH.*/
+void hang_exe(short unsigned int& pin) {
+	while (digitalRead(pin) == HIGH)
+		delay(1);
 }

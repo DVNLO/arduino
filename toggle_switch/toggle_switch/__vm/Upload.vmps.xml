@@ -25,8 +25,8 @@
 40			else
 41				pushbutton.set(true);	//set on
 42			flash(RED_LED);
-43		}
-44	
+43			/*Hang execution until the toggle is not HIGH.*/
+44			while (digitalRead(TOGGLE_PIN) == HIGH)
 </Source>
         <MessageVariables>
           <MessageVariable Name="millis()" Index="1" />
