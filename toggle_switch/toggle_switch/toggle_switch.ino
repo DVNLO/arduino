@@ -19,6 +19,12 @@ public:
 	boolean toggle_switch::get() {
 		return bit;
 	}
+	void toggle_switch::flip() {	//Oran
+		if (bit)
+			bit = false;
+		else 
+			bit = true;
+	}
 private:
 	boolean bit;
 };
@@ -34,13 +40,11 @@ toggle_switch pushbutton;
 void loop() {
 	if (digitalRead(TOGGLE_PIN) == HIGH)
 	{
-		if (pushbutton.get())
-			pushbutton.set(false); //set off
-		else
-			pushbutton.set(true);	//set on
+		pushbutton.flip();
 		flash(RED_LED);
 		hang_exe(TOGGLE_PIN);	//hang execution until button is depressed.
 	}
+
 	if (pushbutton.get())
 		digitalWrite(YELLOW_LED, HIGH);
 	else
