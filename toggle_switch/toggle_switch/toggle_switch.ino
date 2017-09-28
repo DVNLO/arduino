@@ -27,7 +27,6 @@ void setup() {
 	pinMode(TOGGLE_PIN, INPUT);
 	pinMode(RED_LED, OUTPUT);
 	pinMode(YELLOW_LED, OUTPUT);
-	Serial.begin(9600);
 }
 
 toggle_switch pushbutton;
