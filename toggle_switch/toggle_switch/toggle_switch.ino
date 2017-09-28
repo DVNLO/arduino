@@ -39,7 +39,7 @@ void loop() {
 		else
 			pushbutton.set(true);	//set on
 		flash(RED_LED);
-		hang_exe(TOGGLE_PIN);
+		hang_exe(TOGGLE_PIN);	//hang execution until button is depressed.
 	}
 	if (pushbutton.get())
 		digitalWrite(YELLOW_LED, HIGH);
