@@ -10,11 +10,11 @@ struct measurement {
 
 class sensor {
 public:
-	sensor() {};
-	sensor(const unsigned short int& in) {
+	sensor::sensor() {};
+	sensor::sensor(const unsigned short int& in) {
 		read_pin = in;
 	};
-	void measure() {
+	void sensor::measure() {
 		measurement data;
 		if (read_pin == A0 || read_pin == A1 || read_pin == A2
 			|| read_pin == A3 || read_pin == A4 || read_pin == A5)
@@ -27,7 +27,7 @@ public:
 		}
 		most_recent_read = data;
 	};
-	double get() const {
+	double sensor::get() const {
 		return most_recent_read.value;
 	};
 private:
