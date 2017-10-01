@@ -35,7 +35,7 @@ private:
 	measurement most_recent_read;
 };
 
-static const unsigned short int SENSE_PIN = A0;
+constexpr unsigned short int SENSE_PIN = A0;
 sensor temperature(SENSE_PIN);
 
 void setup() {
