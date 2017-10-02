@@ -56,17 +56,23 @@ private:
 
 class Digital : public Sensor {
 public:
-	Digital::Digital() : Sensor() {}
+	Digital::Digital() : Sensor() { pin_mode_set = false; }
 	Digital::Digital(const unsigned short int& in_pin, const String& in_id) : Sensor(in_pin) {
 		id = in_id;
+		pin_mode_set = false;
 	}
 	void Digital::set(const unsigned short int& in_pin, const String& in_pin_mode_type, const String& in_id) {
 		Sensor::set(in_pin);
 		pin_mode_type = in_pin_mode_type;
+		pin_mode_set = true;
 		id = in_id;
 	}
 	void Digital::set_pin_mode_type(const String& in_pin_mode_type) {
 		pin_mode_type = in_pin_mode_type;
+		pin_mode_set = true;
+	}
+	boolean Digital::is_pin_mode_set() const {
+		return pin_mode_set;
 	}
 	String Digital::get_pin_mode_type() const {
 		return pin_mode_type;
@@ -77,9 +83,10 @@ public:
 			if (in_pin_mode_type == "INPUT")	//sensors only take input
 				pinMode(get_pin(), INPUT);
 		}
+		pin_mode_set = true;
 	}
 	void Digital::read() {
-		if (Sensor::is_pin_set())
+		if (Sensor::is_pin_set() && is_pin_mode_set())
 			data.most_recent_value = digitalRead(get_pin());
 	}
 	float Digital::get_most_recent_value() const {
@@ -88,6 +95,7 @@ public:
 private:
 	String id;	//circuit component id
 	String pin_mode_type;
+	boolean pin_mode_set;
 	Measurement data;
 };
 
